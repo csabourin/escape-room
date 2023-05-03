@@ -1,24 +1,14 @@
 <template>
   <div class="container">
     <label for="password">{{ $t("password") }}</label>
-    <input
-      id="password"
-      :type="inputType"
-      v-model="password"
-      @keyup="checkPasswordStrength"
-      @keydown="checkCapsLock($event)"
-    />
+    <input id="password" :type="inputType" v-model="password" @keyup="checkPasswordStrength"
+      @keydown="checkCapsLock($event)" />
     <div v-if="capsLock" class="caps-lock-warning">
       {{ $t("capsLockWarning") }}
     </div>
     <button @click="toggleShowPassword">{{ showPasswordText }}</button>
 
-    <div
-      id="password-strength-label"
-      class="meter-text"
-      role="status"
-      aria-live="polite"
-    >
+    <div id="password-strength-label" class="meter-text" role="status" aria-live="polite">
       {{ $t(`passwordStrength.${strengthText}`) }}
     </div>
     <div id="password-strength-description" class="sr-only">
@@ -28,26 +18,19 @@
       passphrase instead of a single word.
     </div>
     <div class="password-strength-meter" aria-hidden="true">
-      <div
-        class="meter"
-        :class="meterClass"
-        :style="{ width: strength + '%' }"
-      ></div>
+      <div class="meter" :class="meterClass" :style="{ width: strength + '%' }"></div>
     </div>
     <div class="common-password-warning" v-if="isCommonPassword">
       <p v-html="$t('commonPasswordWarning')"></p>
     </div>
     <div class="password-break-time">
-      <p
-        v-html="
-          $t('passwordBreakTime', {
-            bruteForceTimeText:
-              bruteForceTimeObject.timeValue +
-              ' ' +
-              $t('timeUnits.' + bruteForceTimeObject.timeUnit),
-          })
-        "
-      ></p>
+      <p v-html="$t('passwordBreakTime', {
+          bruteForceTimeText:
+            bruteForceTimeObject.timeValue +
+            ' ' +
+            $t('timeUnits.' + bruteForceTimeObject.timeUnit),
+        })
+        "></p>
     </div>
     <button v-if="isStrong" @click="savePassword">
       {{ $t("savePassword") }}
@@ -250,41 +233,120 @@ export default {
         "987654",
         "!@#$%^&*",
         "~!@#$%^&*()_+",
-        "123456789g",
-        "123456789t",
-        "123456789r",
+        "000000",
+        "iloveyou",
+        "dragon",
+        "football",
+        "soccer",
+        "baseball",
+        "master",
+        "1234",
+        "123456789x",
+        "hannah",
+        "whatever",
+        "123456789z",
+        "andrew",
+        "hunter",
+        "pepper",
+        "cookie",
+        "123abc",
+        "summer",
+        "123456789!",
+        "hello",
+        "123456789b",
+        "123456789c",
+        "starwars",
+        "freedom",
+        "abcdef",
+        "123456789d",
         "123456789e",
-        "123456789w",
-        "123456789q",
-        "123456789s",
-        "123456789d",
-        "123456789f",
-        "123456789p",
-        "123456789l",
-        "123456789o",
-        "123456789i",
-        "123456789u",
-        "123456789y",
-        "123456789t",
-        "123456789p",
-        "123456789a",
-        "123456789s",
-        "123456789d",
         "123456789f",
         "123456789g",
         "123456789h",
+        "123456789i",
         "123456789j",
         "123456789k",
         "123456789l",
-        "123456789z",
-        "123456789x",
-        "123456789c",
-        "123456789v",
-        "123456789b",
-        "123456789n",
         "123456789m",
+        "123456789n",
+        "123456789o",
+        "123456789p",
+        "123456789q",
+        "123456789r",
+        "123456789s",
+        "123456789t",
+        "123456789u",
+        "123456789v",
+        "123456789w",
+        "123456789y",
+        "123456789z",
+        "thomas",
+        "george",
+        "1234567890a",
+        "1234567890b",
+        "1234567890c",
+        "1234567890d",
+        "1234567890e",
+        "1234567890f",
+        "1234567890g",
+        "1234567890h",
+        "1234567890i",
+        "1234567890j",
+        "1234567890k",
+        "1234567890l",
+        "1234567890m",
+        "1234567890n",
+        "1234567890o",
+        "1234567890p",
+        "1234567890q",
+        "1234567890r",
+        "1234567890s",
+        "1234567890t",
+        "1234567890u",
+        "1234567890v",
+        "1234567890w",
+        "1234567890x",
+        "1234567890y",
+        "1234567890z",
+        "password2",
+        "password3",
+        "password4",
+        "password5",
+        "password6",
+        "password7",
+        "password8",
+        "password9",
+        "password10",
+        "charlie",
+        "12345678910a",
+        "12345678910b",
+        "12345678910c",
+        "12345678910d",
+        "12345678910e",
+        "12345678910f",
+        "12345678910g",
+        "12345678910h",
+        "12345678910i",
+        "12345678910j",
+        "12345678910k",
+        "12345678910l",
+        "12345678910m",
+        "12345678910n",
+        "12345678910o",
+        "12345678910p",
+        "12345678910q",
+        "12345678910r",
+        "12345678910s",
+        "12345678910t",
+        "12345678910u",
+        "12345678910v",
+        "12345678910w",
+        "12345678910x",
+        "12345678910y",
+        "12345678910z",
+        "samantha",
       ];
-      return commonPasswords.includes(password);
+      return commonPasswords.includes(password.toLowerCase());
     },
   },
 };
@@ -440,6 +502,7 @@ input {
 .password-break-time strong {
   color: #333;
 }
+
 .common-password-warning {
   margin-top: 10px;
   font-size: 14px;
@@ -448,12 +511,14 @@ input {
   padding: 10px;
   border-radius: 5px;
 }
+
 .password-saved-message {
   margin-top: 10px;
   font-size: 14px;
   color: #007f00;
   font-weight: bold;
 }
+
 .caps-lock-warning {
   margin-top: 5px;
   font-size: 14px;
